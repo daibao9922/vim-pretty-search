@@ -218,8 +218,6 @@ execute "nnoremap " . g:vps_show_search_result_map . " :call <sid>MapLeader_q()<
 execute "nnoremap " . g:vps_show_next_result_map . " :call <sid>GotoResultFileNext()<cr>"
 execute "nnoremap " . g:vps_show_prev_result_map . " :call <sid>GotoResultFilePrev()<cr>"
 
-function! s:InitCommand()
-    command! -nargs=1 -complete=dir VpsSearchPath call s:ChangeSearchPath(<f-args>)
-    command! -nargs=+ VpsRg call s:RgWithLineNumber(<f-args>)
-endfunction
+command! -nargs=1 -complete=dir VpsSearchPath call s:ChangeSearchPath(<f-args>)
+command! -nargs=+ VpsRg call s:RgWithLineNumber(<f-args>)
 
