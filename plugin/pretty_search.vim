@@ -205,14 +205,14 @@ augroup reg_search_autocmd
 augroup END
 
 let g:vps_recursive_search_map = get( g:, 'vps_recursive_search_map', '<leader>r' )
-let g:vps_search_current_file_map = get( g:, 'vps_search_current_file_map', '<leader>sl' )
+let g:vps_current_file_search_map = get( g:, 'vps_current_file_search_map', '<leader>sl' )
 let g:vps_stop_search_map = get( g:, 'vps_stop_search_map', '<leader>ss' )
 let g:vps_show_search_result_map = get( g:, 'vps_show_search_result_map', '<leader>q' )
 let g:vps_show_next_result_map = get( g:, 'vps_show_next_result_map', '<c-n>' )
 let g:vps_show_prev_result_map = get( g:, 'vps_show_prev_result_map', '<c-p>' )
 
 execute "nnoremap " . g:vps_recursive_search_map . " :call <sid>MapLeader_r()<cr>"
-execute "nnoremap " . g:vps_search_current_file_map . " :call <sid>MapLeader_sl()<cr>"
+execute "nnoremap " . g:vps_current_file_search_map . " :call <sid>MapLeader_sl()<cr>"
 execute "nnoremap " . g:vps_stop_search_map . " :call <sid>MapLeader_ss()<cr>"
 execute "nnoremap " . g:vps_show_search_result_map . " :call <sid>MapLeader_q()<cr>"
 execute "nnoremap " . g:vps_show_next_result_map . " :call <sid>GotoResultFileNext()<cr>"
