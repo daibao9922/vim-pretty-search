@@ -163,7 +163,7 @@ function! s:ChangeSearchPath(path)
     endif
 endfunction
 
-function! s:MapLeader_r()
+function! s:MapLeaderRecursiveSearch()
     call s:RgWithLineNumber(expand('<cword>'), '')
 endfunction
 
@@ -204,14 +204,14 @@ augroup reg_search_autocmd
     autocmd VimLeave * call <sid>Autocmd_VimLeave()
 augroup END
 
-let g:vps_recursive_search_map = get( g:, 'vps_recursive_search_map', '<leader>r' )
+let g:vps_recursive_search_map = get( g:, 'vps_recursive_search_map', '<leader>ss' )
 let g:vps_current_file_search_map = get( g:, 'vps_current_file_search_map', '<leader>sl' )
-let g:vps_stop_search_map = get( g:, 'vps_stop_search_map', '<leader>ss' )
-let g:vps_show_search_result_map = get( g:, 'vps_show_search_result_map', '<leader>q' )
-let g:vps_show_next_result_map = get( g:, 'vps_show_next_result_map', '<c-n>' )
-let g:vps_show_prev_result_map = get( g:, 'vps_show_prev_result_map', '<c-p>' )
+let g:vps_stop_search_map = get( g:, 'vps_stop_search_map', '<leader>sS' )
+let g:vps_show_search_result_map = get( g:, 'vps_show_search_result_map', '<leader>sr' )
+let g:vps_show_next_result_map = get( g:, 'vps_show_next_result_map', '<leader>sn' )
+let g:vps_show_prev_result_map = get( g:, 'vps_show_prev_result_map', '<leader>sp' )
 
-execute "nnoremap " . g:vps_recursive_search_map . " :call <sid>MapLeader_r()<cr>"
+execute "nnoremap " . g:vps_recursive_search_map . " :call <sid>MapLeaderRecursiveSearch()<cr>"
 execute "nnoremap " . g:vps_current_file_search_map . " :call <sid>MapLeader_sl()<cr>"
 execute "nnoremap " . g:vps_stop_search_map . " :call <sid>MapLeader_ss()<cr>"
 execute "nnoremap " . g:vps_show_search_result_map . " :call <sid>MapLeader_q()<cr>"
