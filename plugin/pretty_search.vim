@@ -167,17 +167,17 @@ function! s:MapLeaderRecursiveSearch()
     call s:RgWithLineNumber(expand('<cword>'), '')
 endfunction
 
-function! s:MapLeader_sl()
+function! s:MapLeaderCurrentFileSearch()
     call s:RgWithLineNumber(expand('<cword>'), expand('%'))
 endfunction
 
-function! s:MapLeader_ss()
+function! s:MapLeaderStopSearch()
     if job_status(s:search_result_job) == "run"
         call job_stop(s:search_result_job)
     endif
 endfunction
 
-function! s:MapLeader_q()
+function! s:MapLeaderShowResult()
     if filereadable(s:search_result_file)
         execute 'e ' . s:search_result_file
     endif
@@ -204,17 +204,17 @@ augroup reg_search_autocmd
     autocmd VimLeave * call <sid>Autocmd_VimLeave()
 augroup END
 
-let g:vps_recursive_search_map = get( g:, 'vps_recursive_search_map', '<leader>ss' )
-let g:vps_current_file_search_map = get( g:, 'vps_current_file_search_map', '<leader>sl' )
-let g:vps_stop_search_map = get( g:, 'vps_stop_search_map', '<leader>sS' )
-let g:vps_show_search_result_map = get( g:, 'vps_show_search_result_map', '<leader>sr' )
-let g:vps_show_next_result_map = get( g:, 'vps_show_next_result_map', '<leader>sn' )
-let g:vps_show_prev_result_map = get( g:, 'vps_show_prev_result_map', '<leader>sp' )
+let g:vps_recursive_search_map = get( g:, 'vps_recursive_search_map', '<leader>s' )
+let g:vps_current_file_search_map = get( g:, 'vps_current_file_search_map', '<leader>c' )
+let g:vps_stop_search_map = get( g:, 'vps_stop_search_map', '<leader>S' )
+let g:vps_show_search_result_map = get( g:, 'vps_show_search_result_map', '<leader>r' )
+let g:vps_show_prev_result_map = get( g:, 'vps_show_prev_result_map', '[r' )
+let g:vps_show_next_result_map = get( g:, 'vps_show_next_result_map', ']r' )
 
 execute "nnoremap " . g:vps_recursive_search_map . " :call <sid>MapLeaderRecursiveSearch()<cr>"
-execute "nnoremap " . g:vps_current_file_search_map . " :call <sid>MapLeader_sl()<cr>"
-execute "nnoremap " . g:vps_stop_search_map . " :call <sid>MapLeader_ss()<cr>"
-execute "nnoremap " . g:vps_show_search_result_map . " :call <sid>MapLeader_q()<cr>"
+execute "nnoremap " . g:vps_current_file_search_map . " :call <sid>MapLeaderCurrentFileSearch()<cr>"
+execute "nnoremap " . g:vps_stop_search_map . " :call <sid>MapLeaderStopSearch()<cr>"
+execute "nnoremap " . g:vps_show_search_result_map . " :call <sid>MapLeaderShowResult()<cr>"
 execute "nnoremap " . g:vps_show_next_result_map . " :call <sid>GotoResultFileNext()<cr>"
 execute "nnoremap " . g:vps_show_prev_result_map . " :call <sid>GotoResultFilePrev()<cr>"
 
